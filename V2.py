@@ -1,4 +1,27 @@
 
+def possiblem(x , y):
+    attir = "(S)outh (N)orth (W)est (E)ast"
+    s, n, w, e = attir.split()
+    if y == 1:
+        return n + "."
+    elif x == 1:
+        if y == 2:
+            return n + " or " + e + " or " + s + "."
+        if y == 3:
+            return e + " or " + s + "."
+    elif x == 2:
+        if y == 2:
+            return s + " or " + w + "."
+        if y == 3:
+            return e + " or " + w + "."
+    elif x == 3:
+        if y == 2:
+            return n + " or " + s + "."
+        if y == 3:
+            return s + " or " + w + "."
+    else:
+        return ""
+
 def movementx(char):
     if char == "e" or char == "E":
         x = 1
@@ -19,84 +42,32 @@ def movementy(char):
 
 x = 1
 y = 1
-
-s = "(S)outh"
 n = "(N)orth"
-w = "(W)est"
+s = "(S)outh"
 e = "(E)ast"
-o = " or "
+w = "(W)est"
 
-while (x != 3) and (y != 1):
-    if y == 1:
-        print("You can travel " + n)
-        k = input("Direction ")
-        if k == "N" or k == "n":
-            move = movementy(k)
-            y += move
-        else:
-            print("Not a valid direction")
-    elif (x == 2 and y == 2) or (x==3 and y ==3):
-        print("You can travel " + w + o + s)
-        k = input("Direction ")
-        if k == "w" or k == "W":
-            move = movementx(k)
-            x += move
-        elif k == "s" or k == "S":
-            move = movementy(k)
-            y += move
-        else:
-            print("Not a valid direction")
-    elif (x == 1 and y == 2):
-        print("You can travel " + n + o + s + o + e)
-        k = input("Direction ")
-        if k == "e" or k == "E":
-            move = movementx(k)
-            x += move
-        elif k == "s" or k == "S":
-            move = movementy(k)
-            y += move
-        elif k == "n" or k == "N":
-            move = movementy(k)
-            y += move
-        else:
-            print("Not a valid direction")
-    elif (x == 3 and y == 2):
-        print("You can travel " + n + o + s)
-        k = input("Direction ")
-        if k == "s" or k == "S":
-            move = movementy(k)
-            y += move
-        elif k == "n" or k == "N":
-            move = movementy(k)
-            y += move
-        else:
-            print("Not a valid direction")
-    elif (x == 1 and y == 3):
-        print("You can travel " + e + o + s)
-        k = input("Direction ")
-        if k == "s" or k == "S":
-            move = movementy(k)
-            y += move
-        elif k == "e" or k == "E":
-            move = movementx(k)
-            x += move
-        else:
-            print("Not a valid direction")
-    elif (x == 2 and y == 3):
-        print("You can travel " + e + o + w)
-        k = input("Direction ")
-        if k == "w" or k == "W":
-            move = movementx(k)
-            x += move
-        elif k == "e" or k == "E":
-            move = movementx(k)
-            x += move
-        else:
-            print("Not a valid direction")
-
-
-
-print("Victory")
+while (x != 3) | (y != 1):
+    a =""
+    b=""
+    c = ""
+    d =""
+    print("You can travel: " + possiblem(x, y))
+    move = input("Direction: ")
+    if n in possiblem(x,y):
+        a = n
+    if s in possiblem(x,y):
+        b = s
+    if e in possiblem(x,y):
+        c = e
+    if w in possiblem(x,y):
+        d = w
+    while (move.upper() != a[1:2]) and (move.upper() != b[1:2]) and (move.upper() != c[1:2]) and (move.upper() != d[1:2]):
+        print("Not a valid direction!")
+        move = input("Direction: ")
+    x += movementx(move)
+    y += movementy(move)
+print("Victory!")
 
     
 
